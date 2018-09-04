@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: tiller-auth-proxy-deployment
+  labels:
+    app: tiller-auth
+spec:
+  selector:
+    matchLabels:
+      app: tiller-auth
+  template:
+    metadata:
+      labels:
+        app: tiller-auth
+    spec:
+      containers:
+      - image: registry.k8s.com:5000/iop/tiller-auth-proxy:1.0.1
+        imagePullPolicy: Always
+        name: auth-proxy
+        ports:
+        - containerPort: 4443
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /usr/local/openresty/nginx/conf
+          name: proxy-config
+      imagePullSecrets:
+      - name: trident-iopdev-registry
+      volumes:
+      - configMap:
+          name: tiller-auth-proxy-config
+        name: proxy-config

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tiller-auth-proxy-service
+spec:
+  ports:
+  - nodePort: 30443
+    port: 4443
+    protocol: TCP
+    targetPort: 4443
+  selector:
+    app: tiller-auth
+  type: NodePort
