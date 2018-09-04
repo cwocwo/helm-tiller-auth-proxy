@@ -1,12 +1,12 @@
-client-id: trident
+client-id: ""
 # client-secret: <CLIENT_SE # require for access_type: confidential
 # Note the redirection-url is optional, it will default to the X-Forwarded-Proto / X-Forwarded-Host r the URL scheme and host not found
-discovery-url: https://trident-web.iop-test.10.110.25.57.xip.io/auth/realms/trident
+discovery-url: https://{host}/auth/realms/""
 enable-default-deny: false
 #encryption_key: AgXa7xRcoClDEU0ZDSH4X0XhL5Qy2Z2j
 listen: 0.0.0.0:3000
-redirection-url: http://10.110.25.114:3000
-upstream-url: http://10.110.25.114:31313
+redirection-url: http://127.0.0.1:3000
+upstream-url: http://127.0.0.1:31313
 resources:
 - uri: /admin*
   methods:
